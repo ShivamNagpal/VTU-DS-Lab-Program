@@ -40,7 +40,7 @@ void main()
 			RESULT[k] = '\0';
 			stringCat(RESULT,REP);
 			k = k + stringLen(REP);
-			// In this j will always be equal to string length of pattern. So,
+			// Here j will always be equal to string length of pattern.
 			i = i + (j -1);
 		}
 		else
@@ -74,7 +74,7 @@ void stringCat(char dest[], char src[])
 	{
 		i++;
 	}
-	// i can be found using strLength function also. 1st while block can be replaced as " i = stringLen(dest); ".
+	// i can be computed using strLength function also. Above while block can be replaced as " i = stringLen(dest); ".
 	
 	while(src[j] != '\0')
 	{
