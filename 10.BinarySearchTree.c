@@ -39,12 +39,14 @@ void main()
 		scanf("%d",&ch);
 		switch(ch)
 		{
-			case 1:	printf("Enter the element to be inserted\n");
+			case 1:
+				printf("Enter the element to be inserted\n");
 				scanf("%d",&ele);
 				root=insert(root,ele);
 				break;
 					
-			case 2:	if(root==NULL)
+			case 2:
+				if(root==NULL)
 					printf("Empty tree\n");
 				else
 				{
@@ -53,7 +55,8 @@ void main()
 				}
 				break;
 					
-			case 3:	if(root==NULL)
+			case 3:
+				if(root==NULL)
 					printf("Empty tree\n");
 				else
 				{
@@ -62,7 +65,8 @@ void main()
 				}
 				break;
 					
-			case 4: if(root==NULL)
+			case 4:
+				if(root==NULL)
 					printf("Empty tree\n");
 				else
 				{
@@ -71,7 +75,8 @@ void main()
 				}
 				break;
 					
-			case 5:	printf("Enter the element to be searched\n");
+			case 5:
+				printf("Enter the element to be searched\n");
 				scanf("%d",&key);
 				flag=search(root, key);
 				if(flag)
