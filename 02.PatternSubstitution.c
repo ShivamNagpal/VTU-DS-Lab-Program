@@ -11,7 +11,7 @@ use Built-in functions.
 */
 
 #include<stdio.h>
-#include<string.h>
+#include<stdlib.h>
 
 int stringLen(char str[]);
 void stringCat(char dest[], char src[]);
