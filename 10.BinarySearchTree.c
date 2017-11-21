@@ -35,7 +35,7 @@ void main()
 	for(;;)
 	{
 		printf("\n1.Insert\n2.Inorder\n3.Preorder\n4.Postorder\n5.Search\n6.Delete\n7.Exit\n");
-		printf("Enter your choice\n");
+		printf("\nEnter your choice\n");
 		scanf("%d",&ch);
 		switch(ch)
 		{
@@ -74,7 +74,7 @@ void main()
 					postorder(root);
 				}
 				break;
-					
+				
 			case 5:
 				printf("Enter the element to be searched\n");
 				scanf("%d",&key);
@@ -84,13 +84,14 @@ void main()
 				else
 					printf("Not Found\n");
 				break;
-					
+				
+				
 			case 6:	
 				printf("Enter the element to be deleted\n");
 				scanf("%d", &ele);
 				root = delete(root, ele);
 				break;
-					
+				
 			case 7:	exit(0);
 		}
 	}
@@ -208,10 +209,3 @@ TNODE *findMin(TNODE *root)
 	else
 		return root;
 }
-
-
-
-
-
-
-
