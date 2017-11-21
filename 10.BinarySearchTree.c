@@ -62,9 +62,9 @@ void main()
                     }
                     break;
 					
-            case 4:	if(root==NULL)
-                        printf("Empty tree\n");
-                    else
+            case 4: if(root==NULL)
+						printf("Empty tree\n");
+					else
                     {
                         printf("The contents are\n");
                         postorder(root);
