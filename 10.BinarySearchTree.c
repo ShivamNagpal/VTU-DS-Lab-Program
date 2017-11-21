@@ -40,50 +40,50 @@ void main()
 		switch(ch)
 		{
 			case 1:	printf("Enter the element to be inserted\n");
-					scanf("%d",&ele);
-					root=insert(root,ele);
-					break;
+				scanf("%d",&ele);
+				root=insert(root,ele);
+				break;
 					
 			case 2:	if(root==NULL)
-						printf("Empty tree\n");
-					else
-					{
-						printf("The contents are\n");
-						inorder(root);
-					}
-					break;
+					printf("Empty tree\n");
+				else
+				{
+					printf("The contents are\n");
+					inorder(root);
+				}
+				break;
 					
 			case 3:	if(root==NULL)
-						printf("Empty tree\n");
-					else
-					{
-						printf("The contents are\n");
-						preorder(root);
-					}
-					break;
+					printf("Empty tree\n");
+				else
+				{
+					printf("The contents are\n");
+					preorder(root);
+				}
+				break;
 					
 			case 4: if(root==NULL)
-						printf("Empty tree\n");
-					else
-					{
-						printf("The contents are\n");
-						postorder(root);
-					}
-					break;
+					printf("Empty tree\n");
+				else
+				{
+					printf("The contents are\n");
+					postorder(root);
+				}
+				break;
 					
 			case 5:	printf("Enter the element to be searched\n");
-					scanf("%d",&key);
-					flag=search(root, key);
-					if(flag)
-						printf("Found\n");
-					else
-						printf("Not Found\n");
-					break;
+				scanf("%d",&key);
+				flag=search(root, key);
+				if(flag)
+					printf("Found\n");
+				else
+					printf("Not Found\n");
+				break;
 					
 			case 6:	printf("Enter the element to be deleted\n");
-					scanf("%d", &ele);
-					root = delete(root, ele);
-					break;
+				scanf("%d", &ele);
+				root = delete(root, ele);
+				break;
 					
 			case 7:	exit(0);
 		}
