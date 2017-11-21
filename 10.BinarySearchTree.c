@@ -80,7 +80,8 @@ void main()
 					printf("Not Found\n");
 				break;
 					
-			case 6:	printf("Enter the element to be deleted\n");
+			case 6:	
+				printf("Enter the element to be deleted\n");
 				scanf("%d", &ele);
 				root = delete(root, ele);
 				break;
