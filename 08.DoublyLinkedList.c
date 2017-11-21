@@ -125,10 +125,9 @@ void insrear(HEAD *head)
 void delfront(HEAD *head)
 {
 	NODE *temp = head->rlink;
-	NODE *next = temp->rlink;
 	printf("Deleted Record is\n");
 	printf("%s\t%s\t%s\t%s\t%f\t%ld\n", (temp->ssn), (temp->name), (temp->department), (temp->designation), (temp->sal), (temp->phno));
-	head->rlink = next;
+	head->rlink = temp->rlink;
 	free(temp);
 	(head->count)--;
 }
