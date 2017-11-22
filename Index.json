@@ -1,0 +1,40 @@
+{
+  "index": [
+    {
+      "title": "02.PatternSubstitution.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/02.PatternSubstitution.c"
+    },
+    {
+      "title": "05.b.TowerOfHanoi.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/05.b.TowerOfHanoi.c"
+    },
+    {
+      "title": "06.CircularQueue.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/06.CircularQueue.c"
+    },
+    {
+      "title": "07.SinglyLinkedList.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/07.SinglyLinkedList.c"
+    },
+    {
+      "title": "08.DoublyLinkedList.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/08.DoublyLinkedList.c"
+    },
+    {
+      "title": "09.PolynomialAddition.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/09.PolynomialAddition.c"
+    },
+    {
+      "title": "10.BinarySearchTree.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/10.BinarySearchTree.c"
+    },
+    {
+      "title": "11.Graph.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/11.Graph.c"
+    },
+    {
+      "title": "12.Hashing.c",
+      "url": "https://raw.githubusercontent.com/ShivamNagpal/VTU-DS-Lab-Program/master/12.Hashing.c"
+    }
+  ]
+}
