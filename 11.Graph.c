@@ -3,8 +3,7 @@
 on Graph(G) of Cities
 a. Create a Graph of N cities using Adjacency Matrix.
 b. Print all the nodes reachable from a given starting node in a digraph using
-BFS method
-c. Check whether a given graph is connected or not using DFS method
+DFS/BFS method
 */
 
 #include<stdio.h>
