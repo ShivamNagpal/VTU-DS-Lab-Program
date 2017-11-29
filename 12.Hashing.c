@@ -53,7 +53,7 @@ void main()
 					fseek(fp, s*index, SEEK_SET);
 					flag=1;
 					if(index==n)
-						index=0;
+						index=-1;
 					if(index==indexcopy)
 					{
 						printf("FILE FULL!!\n");
