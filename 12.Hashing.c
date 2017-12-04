@@ -23,7 +23,7 @@ void main()
 {
 	EMPLOYEE E;
 	FILE *fp;
-	int n, i, s=(2*sizeof(int)+20), minusone=-1, choice, flag, index, indexcopy, id;
+	int n, i, s=sizeof(EMPLOYEE), minusone=-1, choice, flag, index, indexcopy, id;
 	printf("Enter number of records:\n");
 	scanf("%d", &n);
 	fp= fopen("emp.txt", "w+");
