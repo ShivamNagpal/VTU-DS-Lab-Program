@@ -49,16 +49,16 @@ void main()
 				//Linear Probing
 				while(id!=-1)
 				{
-					index++;
-					fseek(fp, s*index, SEEK_SET);
 					flag=1;
+					index++;
 					if(index==n)
-						index=-1;
+						index=0;
 					if(index==indexcopy)
 					{
 						printf("FILE FULL!!\n");
 						break;
 					}
+					fseek(fp, s*index, SEEK_SET);
 					fread(&id, sizeof(int), 1, fp);
 				}
 				if(!((index==indexcopy)&&flag))
