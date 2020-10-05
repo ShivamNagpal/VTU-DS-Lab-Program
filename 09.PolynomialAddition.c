@@ -1,194 +1,288 @@
-/*
-9 Design, Develop and Implement a Program in C for the following operations
-on Singly Circular Linked List (SCLL) with header nodes
-a. Represent and Evaluate a Polynomial P(x,y,z) = 6x2y2z-
-4yz5+3x3yz+2xy5z-2xyz3
-b. Find the sum of two polynomials POLY1(x,y,z) and POLY2(x,y,z) and
-store the result in POLYSUM(x,y,z)
-Support the program with appropriate functions for each of the above
-operations.
-*/
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
-
-typedef struct poly_node
+// C Language Implementation for performing Addition,Multiplication,Subtraction Using singly Linked List
+// Contributed on : 05/10/2020
+#include<bits/stdc++.h>
+using namespace std;
+typedef struct node
 {
-	float coef;
-	int expx;
-	int expy;
-	int expz;
-	struct poly_node *link;
-} POLY;
-
-POLY *getNode();
-void read_poly(POLY *head, int n);
-void print_poly(POLY *head);
-POLY *add_poly(POLY *h1, POLY *h2);
-int compare(POLY *temp1, POLY *temp2);
-void attach(float cf, POLY *exptemp, POLY **tempres);
-POLY* delete(POLY *head, POLY *temp);
-void evaluate(POLY *head);
-
-void main()
+    int coe;
+    int man;
+    struct node *next;
+}NODE;
+typedef struct poly
 {
-	int n1, n2;
-	POLY *POLY1 = getNode();
-	POLY *POLY2 = getNode();
-	POLY *POLYSUM = getNode();
-	
-	POLY1->expx = -1;
-	POLY1->link = POLY1;
-	POLY2->link = POLY2;
-	POLYSUM->link = POLYSUM;
-	printf("\nEnter the number of terms for both polynomials\n");
-	scanf("%d%d",&n1, &n2);
-	printf("\nEnter 1st Polynomial\n");
-	read_poly(POLY1, n1);
-	printf("\n1st Polynomial is\n");
-	print_poly(POLY1);
-	printf("\nEnter 2nd Polynomial\n");
-	read_poly(POLY2, n2);
-	printf("\n2nd Polynomial is\n");
-	print_poly(POLY2);
-	POLYSUM = add_poly(POLY1, POLY2);
-	printf("\nThe Resultant polynomial is\n");
-	print_poly(POLYSUM);
-	evaluate(POLYSUM);
+    NODE *st;
+}POLY;
+void init(POLY *t)
+{
+    t->st=NULL;
+}
+NODE *createNode(int c,int m)
+{
+    NODE *a=(NODE*)malloc(sizeof(NODE));
+    a->coe=c;
+    a->man=m;
+    a->next=NULL;
+    return a;
+}
+void display(POLY *t)
+{
+    NODE *a=t->st;
+    if(a==NULL)
+    {
+        printf("\nEmpty LIST\n");
+        return;
+    }
+    printf("LIST : \n");
+    while(a!=NULL)
+    {
+        if(a->coe>0)
+            printf(" + ");
+        printf("%dx%d",a->coe,a->man);
+        a=a->next;
+    }
+}
+void createList(POLY *t)
+{
+    int c,m;
+    NODE *a=t->st,*b;
+    while(t->st!=NULL)
+    {
+        t->st=a->next;
+        free(a);
+        a=t->st;
+    }
+    while(1)
+    {
+        printf("\n COE MAN : ");
+        scanf("%d%d",&c,&m);
+        if(c==0 && m==0)
+            break;
+        if(c==0)
+            continue;
+        if(t->st==NULL)
+        {
+            t->st=a=createNode(c,m);
+        }
+        else
+        {
+            if(m>=b->man)
+            {
+                printf("\nInvalid");
+                continue;
+            }
+            a=createNode(c,m);
+            b->next=a;
+        }
+        b=a;
+    }
+}
+void sort(POLY *t)
+{
+    NODE *a=t->st,*b,*c;
+    int co,ma;
+    while(a->next!=NULL)
+    {
+        b=a;
+        c=a->next;
+        while(c!=NULL)
+        {
+            if(c->man > b->man)
+                b=c;
+            c=c->next;
+        }
+        if(a!=b)
+        {
+            co=a->coe;
+            a->coe=b->coe;
+            b->coe=co;
+            ma=a->man;
+            a->man=b->man;
+            b->man=ma;
+        }
+        a=a->next;
+    }
+}
+void delAll(POLY *t)
+{
+    NODE *a=t->st;
+    while(t->st!=NULL)
+    {
+        t->st=a->next;
+        free(a);
+        a=t->st;
+    }
+}
+void Add(POLY *r,POLY *p,POLY *q)
+{
+    NODE *a=p->st,*b=q->st,*c,*d;
+    int co,ma;
+    delAll(r);
+    while(a!=NULL && b!=NULL)
+    {
+        if(a->man==b->man)
+        {
+            co=a->coe+b->coe;
+            ma=a->man;
+            a=a->next;
+            b=b->next;
+        }
+        else if(a->man > b->man)
+        {
+            co=a->coe;
+            ma=a->man;
+            a=a->next;
+        }
+        else
+        {
+            co=b->coe;
+            ma=b->man;
+            b=b->next;
+        }
+        if(r->st==NULL)
+            r->st=c=createNode(co,ma);
+        else
+        {
+            c=createNode(co,ma);
+            d->next=c;
+        }
+        d=c;
+    }
+    while(a!=NULL)
+    {
+        c=createNode(a->coe,a->man);
+        d->next=c;
+        d=c;
+    }
+    while(b!=NULL)
+    {
+        c=createNode(b->coe,b->man);
+        d->next=c;
+        d=c;
+    }
 }
 
-POLY *getNode()
+void Subtract(POLY *r,POLY *p,POLY *q)
 {
-	POLY *temp = (POLY *) malloc(sizeof(POLY));
-	if(temp == NULL)
-	{
-		printf("No Memory\n");
-		exit(0);
-	}
-	return temp;
+    NODE *a=p->st,*b=q->st,*c,*d;
+    int co,ma;
+    delAll(r);
+    while(a!=NULL && b!=NULL)
+    {
+        if(a->man==b->man)
+        {
+            co=a->coe-b->coe;
+            ma=a->man;
+            a=a->next;
+            b=b->next;
+        }
+        else if(a->man > b->man)
+        {
+            co=a->coe;
+            ma=a->man;
+            a=a->next;
+        }
+        else
+        {
+            co=-b->coe;
+            ma=b->man;
+            b=b->next;
+        }
+        if(r->st==NULL)
+            r->st=c=createNode(co,ma);
+        else
+        {
+            c=createNode(co,ma);
+            d->next=c;
+        }
+        d=c;
+    }
+    while(a!=NULL)
+    {
+        c=createNode(a->coe,a->man);
+        d->next=c;
+        d=c;
+    }
+    while(b!=NULL)
+    {
+        c=createNode(-b->coe,b->man);
+        d->next=c;
+        d=c;
+    }
 }
 
-void read_poly(POLY *head, int n)
+void multiply(POLY *r,POLY *p,POLY *q)
 {
-	int i;
-	POLY *new = NULL;
-	POLY *temp = head;
-	for(i=0; i<n; i++)
-	{
-		new = getNode();
-		printf("Enter Coef and Exps\n");
-		scanf("%f%d%d%d", &(new->coef), &(new->expx), &(new->expy), &(new->expz));
-		(temp->link) = new;
-		temp = temp->link;
-	}
-	temp->link = head;
-	return;
-}
+    NODE *a=p->st,*b=q->st,*c,*d;
+    delAll(r);
+    int co,ma;
+    while(b!=NULL)
+    {
+        a=p->st;
+        while(a!=NULL)
+        {
+            co=a->coe*b->coe;
+            ma=a->man+b->man;
+            if(r->st==NULL)
+                r->st=c=createNode(co,ma);
+            else
+            {
+                c=createNode(co,ma);
+                d->next=c;
+            }
+            d=c;
+            a=a->next;
+        }
+        b=b->next;
 
-void print_poly(POLY *head)
-{
-	POLY *temp = head->link;
-	while(temp != head)
-	{
-		printf("%f*X^%d*Y^%d*Z^%d\t", temp->coef, temp->expx, temp->expy, temp->expz);
-		temp = temp->link;
-	}
-	printf("\n");
-	return;
+        sort(r);
+        a=r->st;
+        NODE  *b;
+        while(a->next!=NULL)
+        {
+            int co=a->coe;
+            b=a->next;
+            if(a->man==b->man)
+            {
+                co+=b->coe;
+                a->next=b->next;
+                free(b);
+            }
+            a->coe=co;
+            a=a->next;
+        }
+    }
 }
-
-POLY *add_poly(POLY *h1, POLY *h2)
+int main()
 {
-	float cf;
-	POLY *temp1 = h1->link, *temp2 = NULL;
-	POLY *result = getNode();
-	POLY *tempres = result;
-	while(temp1 != h1)
-	{
-		temp2 = h2->link;
-		while(temp2 != h2)
-		{
-			switch(compare(temp1, temp2))
-			{
-				case 1: 
-					cf = temp1->coef + temp2->coef;
-					if(cf)
-					{
-						attach(cf, temp1, &tempres);
-					}
-					temp1 = temp1->link;
-					h2 = delete(h2, temp2);
-					temp2 = h2->link;
-					break;
-						
-				case 2: 
-					temp2 = temp2->link;
-					break;
-			}
-		}
-		if(temp1 != h1)
-		{
-			attach(temp1->coef, temp1, &tempres);
-			temp1 = temp1->link;
-		}
-	}
-	temp2 = h2->link;
-	while(temp2 != h2)
-	{
-		attach(temp2->coef, temp2, &tempres);
-		temp2 = temp2->link;
-	}
-	tempres->link = result;
-	return result;	
-}
-
-int compare(POLY *temp1, POLY *temp2)
-{
-	if((temp1->expx == temp2->expx) && (temp1->expy == temp2->expy) && (temp1->expz == temp2->expz))
-	{
-		return 1;
-	}
-	return 2;
-}
-
-void attach(float cf, POLY *exptemp, POLY **tempres)
-{
-	POLY *new = getNode();
-	new->coef = cf;
-	new->expx = exptemp->expx;
-	new->expy = exptemp->expy;
-	new->expz = exptemp->expz;
-	(*tempres)->link = new;
-	*tempres = new;
-	return;
-}
-
-POLY* delete(POLY *head, POLY *temp)
-{
-	POLY *previous = head, *present = head->link;
-	while(present != temp)
-	{
-		previous = present;
-		present = present->link;
-	}
-	previous->link = present->link;
-	free(present);
-	return head;
-}
-
-void evaluate(POLY *head)
-{
-	float result = 0.0;
-	int x,y,z;
-	POLY *temp = head->link;
-	printf("\nEnter exponents\n");
-	scanf("%d%d%d", &x, &y, &z);
-	while(temp != head)
-	{
-		result += (temp->coef)*pow(x, temp->expx)*pow(y, temp->expy)*pow(z, temp->expz);
-		temp = temp->link;
-	}
-	printf("\nResult after evaluation is %f\n", result);
-	return;
+    int opt;
+    POLY a,b,c;
+    init((&a));
+    init (&b);
+    init((&c));
+    while(1)
+    {
+        printf("\n1.CreateList 1\n2.CreateList 2\n3.display 1\n4.display  2\n5.display 3\n6.add\n7.subtract\n8.multiply\nOption :\n");
+        scanf("%d",&opt);
+        if(opt>8)
+            break;
+        switch (opt) {
+            case 1:
+                createList(&a);break;
+            case 2:
+                createList(&b);break;
+            case 3:
+                display(&a);break;
+            case 4:
+                display(&b);break;
+            case 5:
+                display(&c);break;
+            case 6:
+                Add(&c,&a,&b);break;
+            case 7:
+                Subtract(&c,&a,&b);break;
+            case 8:
+                multiply(&c,&a,&b);
+        }
+    }
+    return 0;
 }
